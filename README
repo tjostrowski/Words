@@ -10,7 +10,7 @@ random = completely random words
 short = containing only <6 characters
 
 e.g.
-mvn exec:java -Dexec.mainClass=pl.parser.nbp.Main -Dexec.args="genFile /home/tomek/backup/repeat2
+mvn exec:java -Dexec.mainClass=pl.parser.nbp.Main -Dexec.args="genFile /home/tomek/backup/repeat2"
 
 ** Counting all letter occurrences:
 > mvn exec:java -Dexec.mainClass=pl.parser.nbp.Main -Dexec.args="countAll <in_file_path> <out_file_path>"

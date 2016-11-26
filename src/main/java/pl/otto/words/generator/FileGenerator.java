@@ -61,9 +61,7 @@ public class FileGenerator {
     }
 
     public void generate() {
-        if (mode == Mode.SOMETIMES_REPEAT || mode == Mode.ONLY_SHORT) {
-            generatedWordsCache = new LimitedArrayList<>(1000);
-        }
+        generatedWordsCache = new LimitedArrayList<>(1000);
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(outFile))) {
 
@@ -94,6 +92,8 @@ public class FileGenerator {
                 : ((rnd.nextBoolean() && !generatedWordsCache.isEmpty())
                     ? generatedWordsCache.get(rnd.nextInt(generatedWordsCache.size()))
                     : generateRandomWord());
+
+            generatedWordsCache.add(generatedWord);
 
             strBuf.append(generatedWord);
 
