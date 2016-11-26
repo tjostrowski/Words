@@ -1,0 +1,36 @@
+** Building:
+> mvn clean install
+
+** Generating text files:
+> mvn exec:java -Dexec.mainClass=pl.parser.nbp.Main -Dexec.args="genFile <file_path> <file_kind>"
+
+<file_kind> = (repeat|random|short) - optional defaults to repeat
+repeat = sometimes repeating words [default]
+random = completely random words
+short = containing only <6 characters
+
+e.g.
+mvn exec:java -Dexec.mainClass=pl.parser.nbp.Main -Dexec.args="genFile /home/tomek/backup/repeat2
+
+** Counting all letter occurrences:
+> mvn exec:java -Dexec.mainClass=pl.parser.nbp.Main -Dexec.args="countAll <in_file_path> <out_file_path>"
+
+e.g.
+> mvn exec:java -Dexec.mainClass=pl.parser.nbp.Main -Dexec.args="countAll /home/tomek/backup/repeat2 /home/tomek/backup/repeat2_counted"
+
+** Counting distinct letter occurrences:
+>  mvn exec:java -Dexec.mainClass=pl.parser.nbp.Main -Dexec.args="countAll <in_file_path> <out_file_path> <jhash|customint|bsearch|array|tree>"
+
+<out_file_path> - optional defaults to out.txt
+<algorithm> - (jhash|customint|bsearch|array|tree), optional defaults to jhash
+Last argument is kind of algorithm used to store longer numbers [see code - I tried different algorithms].
+
+e.g.
+> mvn exec:java -Dexec.mainClass=pl.parser.nbp.Main -Dexec.args="countDistinct /home/tomek/backup/repeat2 /home/tomek/backup/repeat2_distinct jhash"
+
+In case of memory troubles [with distinct], please set:
+export MAVEN_OPTS=-Xmx2048m
+or -DXmx=2048m when running maven commands
+
+/long live java!
+/to
